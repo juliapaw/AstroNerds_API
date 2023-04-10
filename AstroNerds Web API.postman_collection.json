@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "8d04b79c-a8ee-4783-ae72-65d77d2a9236",
+		"name": "AstroNerds Web API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26359710"
+	},
+	"item": [
+		{
+			"name": "GET Zodiacs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/zodiacs/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"zodiacs",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Zodiac with Description",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/zodiacs/name?zodiacName=libra",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"zodiacs",
+						"name"
+					],
+					"query": [
+						{
+							"key": "zodiacName",
+							"value": "libra"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Zodiac by Date Of Birth",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/zodiacs/dateOfBirth?dateOfBirth=1989.02.05",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"zodiacs",
+						"dateOfBirth"
+					],
+					"query": [
+						{
+							"key": "dateOfBirth",
+							"value": "1989.02.05"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Zodiac Description",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"UPDATE - Is the seventh sign of the zodiac and is associated with the element of air. Those born under this sign are often seen as diplomatic, fair-minded, and social. They value balance and harmony in their relationships and surroundings, and are often skilled at resolving conflicts. Libra is ruled by Venus, the planet of love, and as such, they appreciate beauty, art, and romance. On the downside, Libras can be indecisive and avoid confrontations, preferring to keep the peace even when it may not be in their best interest.\""
+				},
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/zodiacs/Libra/UpdateDescription",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"zodiacs",
+						"Libra",
+						"UpdateDescription"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Horoscope by ZodiacName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/horoscope/zodiacName?zodiacName=Leo",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"horoscope",
+						"zodiacName"
+					],
+					"query": [
+						{
+							"key": "zodiacName",
+							"value": "Leo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Horoscope by ZodiacName, CurrentDate and Description",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/horoscope?current_date=2023-07-03&zodiacName=Leo&description=Your%20focus%20has%20shifted%20from%20diligence%20to%20impulse%2C%20especially%20when%20it%20comes%20to%20making%20new%20friends.%20Unusual%20friends.%20Just%20don%27t%20think%20for%20one%20second%20that%20because%20they%27re%20%27different%2C%27%20they%20won%27t%20ask%20you%20to%20take%20the%20reins.%20Or%20that%20you%20won%27t%20accept.",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"horoscope"
+					],
+					"query": [
+						{
+							"key": "current_date",
+							"value": "2023-07-03"
+						},
+						{
+							"key": "zodiacName",
+							"value": "Leo"
+						},
+						{
+							"key": "description",
+							"value": "Your%20focus%20has%20shifted%20from%20diligence%20to%20impulse%2C%20especially%20when%20it%20comes%20to%20making%20new%20friends.%20Unusual%20friends.%20Just%20don%27t%20think%20for%20one%20second%20that%20because%20they%27re%20%27different%2C%27%20they%20won%27t%20ask%20you%20to%20take%20the%20reins.%20Or%20that%20you%20won%27t%20accept."
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Horoscope",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"zodiacName\": \"leo\",\r\n  \"date_range\": \"Jul 23 - Aug 22\",\r\n  \"current_date\": \"2023-07-03\",\r\n  \"description\": \"Your focus has shifted from diligence to impulse, especially when it comes to making new friends. Unusual friends. Just don't think for one second that because they're 'different,' they won't ask you to take the reins. Or that you won't accept.\",\r\n  \"compatibility\": \"Libra\",\r\n  \"mood\": \"Friendly\",\r\n  \"lucky_Number\": 47\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/horoscope",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"horoscope"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Horoscope PDF",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/horoscopefile/Libra",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"horoscopefile",
+						"Libra"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Horoscope PDF",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "https://localhost:{{portNumber}}/api/horoscopefile/upload",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "{{portNumber}}",
+					"path": [
+						"api",
+						"horoscopefile",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
