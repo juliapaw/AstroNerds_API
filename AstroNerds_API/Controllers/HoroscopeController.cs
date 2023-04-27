@@ -14,7 +14,7 @@ namespace AstroNerds_API.Controllers
     public class HoroscopeController : ControllerBase
     {
         private readonly IHoroscopeRepository _horoscopeRepository;
-        private readonly ILogger <HoroscopeController>_logger;
+        private readonly ILogger<HoroscopeController> _logger;
         private readonly IMapper _mapper;
         public HoroscopeController(IHoroscopeRepository horoscopeRepository,
                                     IMapper mapper,
@@ -46,7 +46,7 @@ namespace AstroNerds_API.Controllers
             }
             catch (Exception ex)
             {
-               // _logger.LogError(ex, $"Error retrieving horoscope for zodiac sign {zodiacName}");
+                // _logger.LogError(ex, $"Error retrieving horoscope for zodiac sign {zodiacName}");
                 return StatusCode(500, "An error occurred while retrieving the horoscope.");
             }
         }
@@ -63,15 +63,17 @@ namespace AstroNerds_API.Controllers
         {
             try
             {
-                _horoscopeRepository.DeleteDailyDescriptionForZodiac(current_date, zodiacName, description);
+                await Task.Run(() => _horoscopeRepository.DeleteDailyDescriptionForZodiac(current_date, zodiacName, description));
                 return Ok();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error deleting daily description for zodiac sign {zodiacName}");
+                _logger.LogError(ex, "Error deleting daily description for zodiac sign {ZodiacName}", zodiacName);
                 return StatusCode(500, "An error occurred while deleting the daily description for the zodiac sign.");
             }
         }
+
+
 
         /// <summary>
         ///Adds a daily horoscope for a given zodiac sign with the following information: zodiac sign, date range, current date, description, compatibility with other zodiac signs, mood, and lucky number.
@@ -83,13 +85,14 @@ namespace AstroNerds_API.Controllers
         {
             try
             {
-                 var horoscope = _mapper.Map<Horoscope>(dailyHoroscopeDto);               
-                 _horoscopeRepository.AddDailyHoroscope(horoscope);
+                await Task.Run(() =>
+                {
+                    var horoscope = _mapper.Map<Horoscope>(dailyHoroscopeDto);
+                    _horoscopeRepository.AddDailyHoroscope(horoscope);
+                });
 
-                
                 return Ok();
             }
-
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error adding daily horoscope");
